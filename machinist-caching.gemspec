@@ -5,13 +5,11 @@ require "machinist-caching/version"
 Gem::Specification.new do |s|
   s.name        = "machinist-caching"
   s.version     = Machinist::Caching::VERSION
-  s.authors     = ["Tomas D'Stefano"]
-  s.email       = ["tomas_stefano@successoft.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "machinist-caching"
+  s.authors     = ["Tomas D'Stefano", "Gabriel Sobrinho"]
+  s.email       = ["tomas_stefano@successoft.com", "gabriel.sobrinho@gmail.com"]
+  s.homepage    = "https://github.com/tomas-stefano/machinist-caching"
+  s.summary     = %q{Object caching for machinist}
+  s.description = %q{Object caching for machinist}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
