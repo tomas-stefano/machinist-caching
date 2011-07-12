@@ -1,5 +1,3 @@
 require 'rspec'
-
-RSpec.configure do |config|
-
-end
+require 'machinist'
+require 'machinist/caching'

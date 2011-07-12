@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "machinist-caching/version"
-
 Gem::Specification.new do |s|
   s.name        = "machinist-caching"
-  s.version     = Machinist::Caching::VERSION
+  s.version     = "0.0.1"
   s.authors     = ["Tomas D'Stefano", "Gabriel Sobrinho"]
   s.email       = ["tomas_stefano@successoft.com", "gabriel.sobrinho@gmail.com"]
   s.homepage    = "https://github.com/tomas-stefano/machinist-caching"
