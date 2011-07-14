@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Machinist
   module Caching
     # The shop takes care of caching database objects.
@@ -8,10 +10,7 @@ module Machinist
     # Read more about object caching on the
     # wiki[http://wiki.github.com/notahat/machinist/object-caching].
     class Shop
-      # Return the singleton Shop instance.
-      def self.instance
-        @instance ||= Shop.new
-      end
+      include Singleton
 
       def initialize #:nodoc:
         reset!
