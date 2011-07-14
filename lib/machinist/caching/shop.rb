@@ -12,21 +12,15 @@ module Machinist
     class Shop
       include Singleton
 
+      attr_accessor :warehouse
+
       def initialize #:nodoc:
         reset!
       end
 
       # Throw out the entire collection of cached objects.
       def reset!
-        @warehouse = Warehouse.new
-        restock
-      end
-
-      # Restock the shop with all the cached objects we've got.
-      #
-      # This should be called before each test.
-      def restock
-        @back_room = @warehouse.clone
+        self.warehouse = Warehouse.new
       end
 
       # Buy a (possibly cached) object from the shop.
@@ -36,13 +30,14 @@ module Machinist
       def buy(blueprint, attributes = {})
         raise BlueprintCantSaveError.new(blueprint) unless blueprint.respond_to?(:make!)
 
-        shelf = @back_room[blueprint, attributes]
-        if shelf.empty?
-          object = blueprint.outside_transaction { blueprint.make!(attributes) }
-          @warehouse[blueprint, attributes] << blueprint.box(object)
-          object
+        cached = warehouse[blueprint, attributes]
+
+        if cached.nil?
+          blueprint.make!(attributes).tap do |object|
+            warehouse[blueprint, attributes] = blueprint.box(object)
+          end
         else
-          blueprint.unbox(shelf.shift)
+          blueprint.unbox(cached)
         end
       end
     end
