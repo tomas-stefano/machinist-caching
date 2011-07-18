@@ -10,6 +10,11 @@ This is a big performance win, particularly when creating objects in the setup f
 
     gem install machinist-caching
 
+## Require
+
+    require 'machinist-caching'
+    require 'machinist/caching/active_record'
+
 ## Problem Scenario
 
 Imagine that you have countries, states and cities model. And you have this blueprints:
@@ -56,7 +61,7 @@ And you have some validations in the models:
       validates :name, presence: true, uniqueness: { allow_blank: true }
     end
 
-### Instead of you writing this
+### Instead of you writing this to create a city
 
     brasil = Country.make!(:brasil)
 
@@ -67,9 +72,6 @@ And you have some validations in the models:
     City.make!(:porto_alegre, state: rio_grande_do_sul)
 
 ### With **machinist-caching** you can do this:
-
-    require 'machinist-caching'
-    require 'machinist/caching/active_record'
 
     City.make!(:belo_horizonte)
     City.make!(:porto_alegre)
