@@ -10,10 +10,23 @@ This is a big performance win, particularly when creating objects in the setup f
 
     gem install machinist-caching
 
-## Require
+## Usage
 
-    require 'machinist-caching'
     require 'machinist/caching/active_record'
+
+    # Test::Unit
+    class Test::Unit::TestCase
+      def setup
+        Machinist::Caching::Shop.instance.reset!
+      end
+    end
+
+    # RSpec
+    RSpec.configure do |config|
+      config.before do
+        Machinist::Caching::Shop.instance.reset!
+      end
+    end
 
 ## Problem Scenario
 
