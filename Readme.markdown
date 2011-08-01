@@ -20,32 +20,32 @@ This is a big performance win, particularly when creating objects in the setup f
 Imagine that you have countries, states and cities model. And you have this blueprints:
 
     Country.blueprint(:brasil) do
-	  name { 'Brasil sil sil!!' }
-	end
-	
-	State.blueprint(:minas_gerais) do
-	  acronym { 'MG' }
-	  name    { 'Minas Gerais' }
-	  country { Country.make!(:brasil) }
-	end
-	
-	State.blueprint(:rio_grande_do_sul) do
-	  acronym { 'RS' }
-	  name    { 'Rio Grande do Sul' }
-	  country { Country.make!(:brasil) }
-	end
+      name { 'Brasil sil sil!!' }
+    end
 
-	City.blueprint(:belo_horizonte) do
-	  digit { 1 }
-	  name  { 'Belo Horizonte' }
-	  state { State.make!(:minas_gerais) }
-	end
+    State.blueprint(:minas_gerais) do
+      acronym { 'MG' }
+      name    { 'Minas Gerais' }
+      country { Country.make!(:brasil) }
+    end
 
-	City.blueprint(:porto_alegre) do
-	  digit { 1 }
-	  name  { 'Porto Alegre' }
-	  state { State.make!(:rio_grande_do_sul) }
-	end
+    State.blueprint(:rio_grande_do_sul) do
+      acronym { 'RS' }
+      name    { 'Rio Grande do Sul' }
+      country { Country.make!(:brasil) }
+    end
+
+    City.blueprint(:belo_horizonte) do
+      digit { 1 }
+      name  { 'Belo Horizonte' }
+      state { State.make!(:minas_gerais) }
+    end
+
+    City.blueprint(:porto_alegre) do
+      digit { 1 }
+      name  { 'Porto Alegre' }
+      state { State.make!(:rio_grande_do_sul) }
+    end
 
 And you have some validations in the models:
 
