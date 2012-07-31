@@ -12,6 +12,7 @@ This is a big performance win, particularly when creating objects in the setup f
 
 ## Usage
 
+```ruby
     require 'machinist/caching/active_record'
 
     # Test::Unit
@@ -27,11 +28,13 @@ This is a big performance win, particularly when creating objects in the setup f
         Machinist::Caching::Shop.instance.reset!
       end
     end
+```
 
 ## Problem Scenario
 
 Imagine that you have countries, states and cities model. And you have this blueprints:
 
+```ruby
     Country.blueprint(:brasil) do
       name { 'Brasil sil sil!!' }
     end
@@ -59,9 +62,11 @@ Imagine that you have countries, states and cities model. And you have this blue
       name  { 'Porto Alegre' }
       state { State.make!(:rio_grande_do_sul) }
     end
+```
 
 And you have some validations in the models:
 
+```ruby
     class Country < ActiveRecord::Base
       validates :name, presence: true, uniqueness: { allow_blank: true }
     end
@@ -73,9 +78,11 @@ And you have some validations in the models:
     class City < ActiveRecord::Base
       validates :name, presence: true, uniqueness: { allow_blank: true }
     end
+```
 
 ### Instead of you writing this to create a city
 
+```ruby
     brasil = Country.make!(:brasil)
 
     minas_gerais = State.make!(:minas_gerais, country: brasil)
@@ -83,11 +90,14 @@ And you have some validations in the models:
 
     City.make!(:belo_horizonte, state: minas_gerais)
     City.make!(:porto_alegre, state: rio_grande_do_sul)
+```
 
 ### With **machinist-caching** you can do this:
 
+```ruby
     City.make!(:belo_horizonte)
     City.make!(:porto_alegre)
+```
 
 ### Profit!
 
